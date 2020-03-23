@@ -28,7 +28,9 @@ public class InMemoryTimeEntryRepository implements TimeEntryRepository {
 
 	@Override
 	public TimeEntry find(Long id) {
-		
+		if(id ==null || timeEntry==null||id!= timeEntry.getId()) {
+			return null;
+		}
 		return timeEntry;
 	}
 
@@ -59,7 +61,7 @@ public class InMemoryTimeEntryRepository implements TimeEntryRepository {
 		count=timeEntryId;
 		this.timeEntry=null;
 		this.actual.clear();
-		
+			
 	}
 	
 	

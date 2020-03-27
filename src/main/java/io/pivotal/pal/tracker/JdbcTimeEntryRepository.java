@@ -21,6 +21,7 @@ public class JdbcTimeEntryRepository implements TimeEntryRepository {
 	public JdbcTimeEntryRepository(MysqlDataSource dataSource) {
 		
 		this.jdbcTemplate= new JdbcTemplate(dataSource);
+		initialize();
 	}
 
 	@Override
@@ -70,6 +71,10 @@ public class JdbcTimeEntryRepository implements TimeEntryRepository {
 	public void delete(long id) {
 		jdbcTemplate.update("DELETE FROM time_entries WHERE id = ?", id);
 
+	}
+	
+	private void initialize() {
+		jdbcTemplate.update("DELETE FROM time_entries");
 	}
 	private final RowMapper<TimeEntry> mapper = (rs, rowNum) -> new TimeEntry(
 	        rs.getLong("id"),

@@ -12,8 +12,8 @@ public class PalTrackerApplication {
 	
 	@Bean
 	public TimeEntryRepository getTimeEntryRepository() {
-		MysqlDataSource dataSource = new MysqlDataSource();
-		dataSource.setUrl("jdbc:mysql://localhost:3306/tracker_dev?user=tracker&useSSL=false&useTimezone=true&serverTimezone=UTC&useLegacyDatetimeCode=false");
+		 MysqlDataSource dataSource = new MysqlDataSource();
+	        dataSource.setUrl(System.getenv("SPRING_DATASOURCE_URL"));
 		
 		return new JdbcTimeEntryRepository(dataSource);
 	}
